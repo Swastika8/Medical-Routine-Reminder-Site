@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Reminder</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Auth Section -->
+    <div id="auth-container" class="card">
+        <h2 id="auth-title">Welcome Back</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <div id="signup-extra" style="display: none;">
+            <input type="text" id="emergency-contact" placeholder="Emergency Contact Name/Phone">
+        </div>
+        <button class="btn btn-primary" onclick="handleAuth()" id="auth-btn">Login</button>
+        <p><span class="toggle-link" onclick="toggleAuth()" id="toggle-text">Don't have an account? Sign up</span></p>
+    </div>
+
+    <!-- Main App -->
+    <div id="app-container">
+        <header>
+            <h1 id="welcome-msg">Hello!</h1>
+            <div id="live-clock">00:00:00</div>
+            <p>Your daily wellness checklist</p>
+        </header>
+
+        <div class="checklist-card card">
+            <div class="check-item"><input type="checkbox" id="meds"> <label for="meds">Take Medicine</label></div>
+            <div class="check-item"><input type="checkbox" id="water"> <label for="water">Drink Water</label></div>
+            <div class="check-item"><input type="checkbox" id="food"> <label for="food">Eat Healthy Meal</label></div>
+            <div class="check-item"><input type="checkbox" id="sleep"> <label for="sleep">Ready for Sleep</label></div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="btn btn-warning" onclick="showModal('confusedModal')">I AM CONFUSED</button>
+            <button class="btn btn-success" onclick="showModal('scheduleModal')">MY SCHEDULE</button>
+        </div>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Modals (same as yours, unchanged structurally) -->
+    <!-- Keep your existing modal HTML here -->
+
+    <script src="js/app.js"></script>
+</body>
+</html>
