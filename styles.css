@@ -1,158 +1,177 @@
 :root {
     --primary: #4a90e2;
-    --secondary: #67b26f;
-    --warning: #ff9f43;
+    --secondary: #52c41a;
+    --warning: #f39c12;
     --danger: #e74c3c;
-    --bg: linear-gradient(135deg, #e0f7fa, #fce4ec);
-    --text: #2c3e50;
-    --card-bg: rgba(255, 255, 255, 0.85);
+    --bg: #f0f4f8;
+    --card-bg: #ffffff;
+    --text-main: #2c3e50;
+    --text-light: #7f8c8d;
+    --radius: 16px;
+    --shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-}
+* { box-sizing: border-box; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
 
-body {
-    background: var(--bg);
-    min-height: 100vh;
+body { 
+    background-color: var(--bg); 
+    margin: 0; 
+    padding: 20px; 
+    color: var(--text-main);
     display: flex;
     justify-content: center;
-    align-items: center;
-    color: var(--text);
+    min-height: 100vh;
 }
 
-/* Glass Card */
 .card {
-    backdrop-filter: blur(10px);
     background: var(--card-bg);
-    border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-}
-
-/* Auth */
-#auth-container {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     width: 100%;
-    max-width: 400px;
-    text-align: center;
+    max-width: 450px;
+    margin: auto;
 }
 
-input {
+/* Typography */
+h1, h2 { margin-top: 0; color: var(--text-main); }
+.subtitle { color: var(--text-light); margin-bottom: 30px; text-align: center; }
+
+/* Auth Form */
+.input-group input {
     width: 100%;
-    padding: 12px 15px;
+    padding: 14px;
     margin: 10px 0;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    outline: none;
-    transition: 0.2s;
+    border: 1px solid #dcdde1;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border 0.3s;
 }
-
-input:focus {
+.input-group input:focus {
+    outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(74,144,226,0.2);
 }
 
 /* Buttons */
 .btn {
-    padding: 12px 20px;
+    width: 100%;
+    padding: 15px;
     border: none;
     border-radius: 12px;
     font-weight: 600;
+    font-size: 16px;
     cursor: pointer;
-    transition: 0.3s;
-    width: 100%;
+    transition: transform 0.2s, opacity 0.2s;
+    margin-top: 10px;
 }
-
-.btn:hover {
-    transform: scale(1.02);
-    opacity: 0.95;
-}
-
+.btn:active { transform: scale(0.98); }
 .btn-primary { background: var(--primary); color: white; }
-.btn-warning { background: var(--warning); color: white; }
 .btn-success { background: var(--secondary); color: white; }
-
-.toggle-link {
-    color: var(--primary);
-    cursor: pointer;
-    font-size: 14px;
+.btn-warning { background: var(--warning); color: white; }
+.btn-logout { 
+    background: none; border: none; color: var(--text-light); 
+    text-decoration: underline; cursor: pointer; width: 100%; margin-top: 25px; 
 }
 
-/* App Section */
-#app-container {
-    display: none;
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
-}
+.toggle-wrapper { text-align: center; margin-top: 15px; }
+.toggle-link { color: var(--primary); cursor: pointer; font-size: 14px; font-weight: 500; }
 
-header h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
+/* Clock */
 #live-clock {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
     color: var(--primary);
+    margin: 10px 0;
+    letter-spacing: -1px;
 }
 
 /* Checklist */
-.checklist-card {
-    margin-top: 20px;
-    text-align: left;
-}
-
+.checklist-card { padding: 10px 20px; }
 .check-item {
     display: flex;
     align-items: center;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    font-size: 1.1rem;
+    padding: 18px 0;
+    border-bottom: 1px solid #f1f2f6;
 }
-
-.check-item:last-child {
-    border-bottom: none;
-}
-
-.check-item input {
-    width: 20px;
-    height: 20px;
+.check-item:last-child { border-bottom: none; }
+.check-item input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
     margin-right: 15px;
-}
-
-/* Bottom Nav */
-.bottom-nav {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.logout-btn {
-    margin-top: 20px;
-    background: none;
-    border: none;
-    color: grey;
-    text-decoration: underline;
+    accent-color: var(--secondary);
     cursor: pointer;
 }
+.check-item label { font-size: 1.1rem; cursor: pointer; flex-grow: 1; }
 
-/* Responsive */
+/* Navigation */
+.bottom-nav { display: flex; gap: 12px; margin-top: 20px; max-width: 450px; }
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44, 62, 80, 0.7);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+.modal-content {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #bdc3c7; }
+
+/* Breathing Animation */
+.breathing-circle {
+    width: 60px;
+    height: 60px;
+    background: rgba(74, 144, 226, 0.2);
+    border-radius: 50%;
+    margin: 20px auto;
+    animation: breathe 4s infinite ease-in-out;
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.8); opacity: 1; }
+}
+
+/* Schedule items */
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed #eee;
+}
+.time-badge {
+    background: #eef2f7;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Animations */
+.fade-in { animation: fadeIn 0.6s ease-out; }
+.scale-in { animation: scaleIn 0.3s ease-out; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* Mobile */
 @media (max-width: 480px) {
-    .bottom-nav {
-        flex-direction: column;
-    }
-
-    #live-clock {
-        font-size: 1.8rem;
-    }
+    .bottom-nav { flex-direction: column; }
+    #live-clock { font-size: 2.2rem; }
 }
