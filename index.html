@@ -4,53 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wellness Reminder</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Auth Section -->
-    <div id="auth-container" class="card">
+    <div id="auth-container" class="card fade-in">
         <h2 id="auth-title">Welcome Back</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <div id="signup-extra" style="display: none;">
-            <input type="text" id="emergency-contact" placeholder="Emergency Contact Name/Phone">
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <div id="signup-extra" style="display: none;">
+                <input type="text" id="emergency-contact" placeholder="Emergency Contact (Name/Phone)">
+            </div>
         </div>
         <button class="btn btn-primary" onclick="handleAuth()" id="auth-btn">Login</button>
-        <p><span class="toggle-link" onclick="toggleAuth()" id="toggle-text">Don't have an account? Sign up</span></p>
+        <p class="toggle-wrapper">
+            <span class="toggle-link" onclick="toggleAuth()" id="toggle-text">Don't have an account? Sign up</span>
+        </p>
     </div>
 
-    <!-- Main App -->
-    <div id="app-container">
-        <header>
+    <!-- Main App Section -->
+    <div id="app-container" style="display: none;">
+        <header class="app-header fade-in">
             <h1 id="welcome-msg">Hello!</h1>
             <div id="live-clock">00:00:00</div>
-            <p>Your daily wellness checklist</p>
+            <p class="subtitle">Your Daily Wellness Checklist</p>
         </header>
 
-        <div class="checklist-card card">
-            <div class="check-item"><input type="checkbox" id="meds"> <label for="meds">Take Medicine</label></div>
-            <div class="check-item"><input type="checkbox" id="water"> <label for="water">Drink Water</label></div>
-            <div class="check-item"><input type="checkbox" id="food"> <label for="food">Eat Healthy Meal</label></div>
-            <div class="check-item"><input type="checkbox" id="sleep"> <label for="sleep">Ready for Sleep</label></div>
+        <div class="checklist-card card fade-in">
+            <div class="check-item">
+                <input type="checkbox" id="meds">
+                <label for="meds">Take Medicine</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="water">
+                <label for="water">Drink Water</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="food">
+                <label for="food">Eat Healthy Meal</label>
+            </div>
+            <div class="check-item">
+                <input type="checkbox" id="sleep">
+                <label for="sleep">Ready for Sleep</label>
+            </div>
         </div>
 
         <div class="bottom-nav">
             <button class="btn btn-warning" onclick="showModal('confusedModal')">I AM CONFUSED</button>
             <button class="btn btn-success" onclick="showModal('scheduleModal')">MY SCHEDULE</button>
         </div>
-
-        <button class="logout-btn" onclick="logout()">Logout</button>
+        
+        <button class="btn-logout" onclick="logout()">Logout</button>
     </div>
 
-    <!-- Modals (same as yours, unchanged structurally) -->
-    <!-- Keep your existing modal HTML here -->
+    <!-- Confusion Modal -->
+    <div id="confusedModal" class="modal">
+        <div class="modal-content scale-in">
+            <span class="close-btn" onclick="closeModal('confusedModal')">&times;</span>
+            <h2 class="text-danger">Take a Deep Breath</h2>
+            <div class="breathing-circle"></div>
+            <div class="calm-text">
+                Everything is okay. Let's pause. <br>
+                <strong>Inhale... Hold... Exhale...</strong>
+            </div>
+            <p>Your support person is here for you:</p>
+            <div class="contact-info" id="display-contact">No contact saved</div>
+        </div>
+    </div>
 
-    <script src="js/app.js"></script>
+    <!-- Schedule Modal -->
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content scale-in">
+            <span class="close-btn" onclick="closeModal('scheduleModal')">&times;</span>
+            <h2>Daily Schedule</h2>
+            <div class="schedule-list">
+                <div class="schedule-item"><span>Breakfast / Meds</span> <span class="time-badge">08:00 AM</span></div>
+                <div class="schedule-item"><span>Water Refill</span> <span class="time-badge">11:00 AM</span></div>
+                <div class="schedule-item"><span>Lunch Time</span> <span class="time-badge">01:30 PM</span></div>
+                <div class="schedule-item"><span>Evening Meds</span> <span class="time-badge">07:00 PM</span></div>
+                <div class="schedule-item"><span>Wind down</span> <span class="time-badge">10:30 PM</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
